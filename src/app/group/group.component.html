@@ -1,0 +1,20 @@
+<div class="card mb-2">
+    <div class="card-header">
+        <div class="d-flex flex-row justify-content-center">
+            <div class="form-check form-switch">
+                <input class="form-check-input" 
+                       type="checkbox" 
+                       role="switch" 
+                       [checked]="true" 
+                       (change)="onGroupLightSwitch($event)">
+            </div>
+            <span class="me-1">{{ group.name }}</span>
+        </div>
+    </div>
+    <div class="card-body d-flex flex-wrap gap-2 justify-content-center">
+        @for (lightId of group.lights; track lightId)
+        {
+            <app-light [id]="lightId" [shouldRefresh]="shouldRefreshLightState" class="mb-2"></app-light>
+        }
+    </div>
+</div>

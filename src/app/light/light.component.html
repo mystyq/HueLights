@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header" class="p-2 pb-0 ms-2 me-2">
+        <div class="d-flex flex-row justify-content-center">
+            <input #inputLightName 
+                   id="inputLightName"
+                   class="card-title mb-0 px-0 form-control-plaintext"
+                   [ngClass]="{'border-bottom input-edit-light-name': bCanEditLightName}"
+                   type="text"
+                   [(ngModel)]="light.name" 
+                   [disabled]="!bCanEditLightName" 
+                   (keydown.enter)="editLightName()">
+            <i id="iconSave" class="bi bi-check2-circle ms-1 pe-1 align-content-center" *ngIf="bSaveIconShown" @fade (@fade.done)="bSaveIconShown = false"></i>
+            <i class="bi bi-pencil ms-1 align-content-center" (click)="editLightName()"></i>
+        </div>
+    </div>
+    <div class="card-body pt-2">
+        <a class="btn border w-100" [style.backgroundColor]="lightColor">
+            <i class="bi bi-lamp"></i>
+        </a>
+    </div>
+    <div class="card-footer p-0 ps-1">
+        <div class="d-flex flex-row">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" [checked]="light.state.on" (change)="onLightSwitch($event)">
+            </div>
+            <div class="ms-auto me-1">
+                <input type="color" (change)="colorSelected($event)" [(ngModel)]="selectedColor" [ngClass]="selectedColor ? '' : 'd-none'">
+            </div>
+        </div>
+    </div>
+</div>
