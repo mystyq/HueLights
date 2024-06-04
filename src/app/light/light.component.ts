@@ -32,7 +32,7 @@ export class LightComponent implements OnInit, OnDestroy {
     constructor(private hueLightsApi: HueLightsApiService) { }
 
     ngOnInit(): void {
-        this.registerLightStateHeartbeat();
+        //this.registerLightStateHeartbeat();
         this.refreshLight();
         this.shouldRefresh.subscribe(() => {
             this.refreshLightState();
