@@ -19,7 +19,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       ]
 })
 export class LightComponent implements OnInit, OnDestroy {
-    @ViewChild('inputLightName') inputLightName!: ElementRef;
+    @ViewChild('inputLightName', { static: false }) inputLightName: ElementRef = {} as ElementRef;
     @Input() id: number = -1;
     @Input() shouldRefresh: Subject<boolean> = new Subject();
     light: ILight = { state: {} } as ILight;
@@ -32,7 +32,6 @@ export class LightComponent implements OnInit, OnDestroy {
     constructor(private hueLightsApi: HueLightsApiService) { }
 
     ngOnInit(): void {
-        //this.registerLightStateHeartbeat();
         this.refreshLight();
         this.shouldRefresh.subscribe(() => {
             this.refreshLightState();
